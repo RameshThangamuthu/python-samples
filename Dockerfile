@@ -1,6 +1,6 @@
 FROM tiangolo/uwsgi-nginx:python3.5
 
-RUN python.exe -m pip install flask
+RUN pip install flask
 
 ADD app_get.py /
 
