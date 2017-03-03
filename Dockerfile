@@ -1,11 +1,9 @@
-FROM ronanguilloux/debianeo:latest
-# Add some utilities
-ADD docker/pim-download.sh /usr/local/bin/pim-download
-ADD docker/pim-initialize.sh /usr/local/bin/pim-initialize
-ADD docker/run.sh /usr/local/bin/run
-RUN sudo chmod +x /usr/local/bin/*
+FROM tiangolo/uwsgi-nginx:python3.5
 
-ADD docker/akeneo.local.conf /etc/apache2/sites-available/000-default.conf
-RUN pim-download
-RUN pim-initialize
-CMD ["sudo", "run"]
+RUN pip install flask
+
+# Add app configuration to Nginx
+COPY nginx.conf /etc/nginx/conf.d/
+
+# Copy sample app
+COPY ./app /app
