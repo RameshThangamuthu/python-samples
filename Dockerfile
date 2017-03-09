@@ -1,6 +1,6 @@
 FROM tiangolo/uwsgi-nginx:python3.5
 
-RUN pip install flask
+RUN pip install --proxy http://165.225.104.34:80 flask
 
 ADD app_get.py /
 
